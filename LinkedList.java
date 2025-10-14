@@ -31,10 +31,8 @@ public class LinkedList<T> implements Iterable<T> {
 
 		Node<T> curr = first;
 		
-		while(curr.next != null) {
-			curr = curr.next;
-		}
-
+		while(curr.next != null) curr = curr.next;
+	
 		curr.next = n;
 		numItems++;
 		
@@ -42,21 +40,15 @@ public class LinkedList<T> implements Iterable<T> {
 	
 	public T Get(int i) {
 		
-		if(first == null) {
-	        throw new IndexOutOfBoundsException("Index: " + i );
-		}
+		if(first == null) throw new IndexOutOfBoundsException("Index: " + i );
 		
-		if(i > numItems-1) {
-			return null;
-		}
+		if(i > numItems-1) return null;
 		
 		int c = 0;
 		Node<T> curr = first;
-
-		
+	
 		while(c < i && curr.next != null) {
 			c++;
-
 			curr = curr.next;
 		}
 		
@@ -69,9 +61,7 @@ public class LinkedList<T> implements Iterable<T> {
 	
 	public void Remove(int i) {
 		
-		if(i < 0 || i > numItems || first == null) {
-			return;
-		}
+		if(i < 0 || i > numItems || first == null) return;
 		
 		if(i == 0) {
 			first = first.next;
@@ -81,11 +71,9 @@ public class LinkedList<T> implements Iterable<T> {
 
 		Node<T> curr = first;
 
-	    for (int c = 0; c < i - 1; c++) {
-		    curr = curr.next;
-	    }
+	    for (int c = 0; c < i - 1; c++) curr = curr.next;    
 	    
-	    if(curr.next != null) {
+		if(curr.next != null) {
 	    	curr.next = curr.next.next;
 	    	numItems--;
 	    }
