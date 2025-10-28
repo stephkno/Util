@@ -166,33 +166,19 @@ public class HashMap<T> implements Iterable<T> {
 	
 	// get index of item with key in chain
 	private int indexOfKey(LinkedList<HashMapItem<T>> chain, String key) {
-		
-		// handle null chains and keys
 		if(chain == null || key == null) return -1;
 		
 		int i = 0;
-		Boolean loop = true;
-		HashMapItem<T> value = null;
-		
-		// find item in chain by key
-		while(loop) {
-			
-			HashMapItem<T> hti = chain.Get(i++);
-			
-			// found end of list
-			if(hti == null) {
-				loop = false;
+		while(i < chain.Length()) {
+			HashMapItem<T> hti = chain.Get(i);
+			if(hti != null && hti.key.equals(key)) {
+				return i;  // Found
 			}
-			// found item key?
-			else if(hti.key.equals(key)) {
-				loop = false;
-			}
-			
-			
+			i++;
 		}
-		
-		return i-1;
+		return -1;  // Not found
 	}
+	
 	
 	// rebuild new hashmap
 	private void rehash(int resize) {
